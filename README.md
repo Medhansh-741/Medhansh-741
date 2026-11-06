@@ -16,7 +16,7 @@ I take problems from the user experience down to technical architecture, buildin
 
 ## Philosophy & Approach
 
-I build by jumping in headfirst. Every project is an excuse to explore a stack I haven't mastered yet, a problem that feels just out of reach, or an architecture I haven't tried. I think in systems, not features: connecting ideas across AI, infrastructure, and full-stack to build solutions that hold up under pressure. I don't stay comfortable. I learn by doing, I ship fast, and I believe code should scale beyond its first use case.
+I build by jumping in headfirst. Every project is an excuse to explore a stack I haven't mastered yet, a problem that feels just out of reach, or an architecture I haven't tried. 
 
 ---
 
