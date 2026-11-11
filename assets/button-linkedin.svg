@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="86" height="28" viewBox="0 0 86 28">
+<rect x=".5" y=".5" width="85" height="27" rx="6" fill="#24292f" stroke="#6e7781"/>
+<svg x="10" y="7" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#f0f6fc" xmlns="http://www.w3.org/2000/svg" style="color:#f0f6fc" height="14" width="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+<text x="30" y="18.5" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#f0f6fc">LinkedIn</text>
+</svg>
