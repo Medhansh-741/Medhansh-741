@@ -8,16 +8,14 @@ const width = 360;
 const escape = (text) => String(text).replace(/[&<>"']/g, (character) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
 
-function panel(title, height, content, framed = true) {
+function panel(title, height, content, theme) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img">
 <title>${escape(title)}</title>
 <style>
-svg { color: #171717; font-family: system-ui, sans-serif; }
-.paper { fill: #fff; stroke: #d0d7de; }
+svg { color: ${theme.foreground}; font-family: system-ui, sans-serif; ${theme.levels.map((color, index) => `--level-${index}: ${color};`).join(" ")} }
 text { fill: currentColor; }
-.muted { fill: #57606a; }
+.muted { fill: ${theme.muted}; }
 </style>
-${framed ? `<rect class="paper" x=".5" y=".5" width="${width - 1}" height="${height - 1}"/>` : `<rect width="${width}" height="${height}" fill="#fff"/>`}
 ${content}
 </svg>\n`;
 }
@@ -52,7 +50,6 @@ async function renderStats() {
   const start = new Date(`${today}T00:00:00Z`);
   start.setUTCDate(start.getUTCDate() - 364);
   const days = new Map(payload.contributions.map((day) => [day.date, day]));
-  const colors = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
   const monthFormat = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short" });
   const offset = start.getUTCDay();
   const labels = [];
@@ -72,7 +69,7 @@ async function renderStats() {
       labels.push(line(monthFormat.format(day), x, 128, 10, 400, true));
       lastLabelX = x;
     }
-    return `<rect x="${x}" y="${y}" width="5" height="5" rx=".6" fill="${colors[contribution.level]}"/>`;
+    return `<rect x="${x}" y="${y}" width="5" height="5" rx=".6" fill="var(--level-${contribution.level})"/>`;
   });
   const format = new Intl.NumberFormat("en-US");
   const metrics = [
@@ -91,7 +88,11 @@ async function renderStats() {
   const title = ["GitHub activity", ...metrics.map(({ value, label, period }) =>
     `${format.format(value)} ${label.toLowerCase()} (${period.toLowerCase()})`)].join(". ");
   const content = [line("GitHub activity", 20, 26, 16, 700), ...figures, ...labels, ...cells].join("\n");
-  await writeFile(new URL("stats.svg", assets), panel(title, 191, content, false));
+  const themes = [
+    { file: "stats.svg", foreground: "#171717", muted: "#57606a", levels: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"] },
+    { file: "stats-dark.svg", foreground: "#f0f6fc", muted: "#9198a1", levels: ["#21262d", "#0e4429", "#006d32", "#26a641", "#39d353"] },
+  ];
+  await Promise.all(themes.map((theme) => writeFile(new URL(theme.file, assets), panel(title, 191, content, theme))));
 }
 
 await mkdir(assets, { recursive: true });
