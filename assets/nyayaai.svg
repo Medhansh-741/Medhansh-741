@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96" role="img">
+<title>NyayaAI. Researches Indian law and drafts legal documents with sources and explanations.</title>
+<style>
+svg { color: #171717; font-family: system-ui, sans-serif; }
+.paper { fill: #fff; stroke: #d0d7de; }
+text { fill: currentColor; }
+.muted { fill: #57606a; }
+</style>
+<rect class="paper" x=".5" y=".5" width="359" height="95"/>
+<text x="20" y="31" font-size="17" font-weight="700">NyayaAI</text>
+<text x="20" y="56" font-size="13" font-weight="400">Researches Indian law and drafts legal</text>
+<text x="20" y="74" font-size="13" font-weight="400">documents with sources and explanations.</text>
+</svg>
